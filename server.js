@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const massive = require('massive');
+const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
 
@@ -16,7 +17,12 @@ massive(process.env.CONNECTION_STRING)
         console.log('Db not connected.')
     })
 
+app.use(cors());
+app.use(bodyParser.json());
 
+app.get('/ping', (req, res) => {
+    res.send('this worked')
+})
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
