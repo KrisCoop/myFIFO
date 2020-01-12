@@ -12,6 +12,21 @@ class Login extends Component{
         }
     }
 
+    loginUser = () => {
+        const userInfo = {
+            inputEmail: this.state.inputEmail,
+            inputPassword: this.state.inputPassword
+        }
+        axios.post('/login', userInfo)
+        .then(response => {
+            if (response.data.success === true){
+                alert('login successful')
+            } else {
+                alert('no dice')
+            }
+        })
+    }
+
     updateInput = (event) => {
 
         this.setState({

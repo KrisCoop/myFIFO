@@ -5,6 +5,7 @@ const massive = require('massive');
 const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
+const controller = require('./controller');
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.use(bodyParser.json());
 app.get('/ping', (req, res) => {
     res.send('this worked')
 })
+
+app.post('/login', controller.login)
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
